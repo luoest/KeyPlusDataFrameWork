@@ -3,6 +3,9 @@ from utilities.WaitElement import *
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from utilities.ObjectMapping import getWaitElement
+import time
+import os
 
 def getBrowser(browserName):
     global driver, browser_name, wait
@@ -19,3 +22,64 @@ def getBrowser(browserName):
         driver = webdriver.Firefox()
     wait = WaitPageElement(driver)
     browser_name = browserName.lower()
+
+def getUrl(url):
+    driver.get(url)
+
+def getElement(locType, loc):
+    getWaitElement(driver, locType, loc)
+
+def getClear(locType, loc):
+    getWaitElement(driver, locType, loc).clear()
+
+def getSendKeys(locType, loc, value):
+    getWaitElement(driver, locType, loc).send_keys(value)
+
+def getClick(locType, loc):
+    getWaitElement(driver, locType, loc).click()
+
+def getPageSource():
+    return driver.page_source
+
+def getAssertIn(element):
+    try:
+        assert element in getPageSource(), '页面代码中没有发现目标元素：%s'%str(element)
+    except Exception as e:
+        print(e)
+        raise e
+
+def getTitle():
+    title = driver.title
+    msg = '当前页面的标题是：' + str(title)
+    print(msg)
+    return title
+
+def getCurrent_url():
+    current_url = driver.current_url
+    msg = '当前页面的地址是：' + str(current_url)
+    print(msg)
+    return current_url
+
+def getSleep(sleeeSec):
+    time.sleep(sleeeSec)
+
+def getClose():
+    driver.quit()
+
+def getOpenLocalFile(file):
+    os.startfile(file)
+
+
+if __name__ == '__main__':
+    getBrowser('chrome')
+    getUrl('http://localhost')
+    getSendKeys('name', 'username', 'gotIt')
+    getSendKeys('name', 'password', 'gotIt123')
+    getClick('name', 'Submit')
+    getTitle()
+    getCurrent_url()
+    getClick('partial link text', '请点击这里')
+    getAssertIn('我的空间')
+    getAssertIn('火星人的地盘')
+    getSleep(1)
+    getClose()
