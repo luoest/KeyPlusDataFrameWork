@@ -1,4 +1,5 @@
 from testcases.WriteTestResult import *
+from utilities.KeyAndDataLog import *
 
 def changeInfo(key_sheet_obj, data_obj, rowNo):
 
@@ -33,16 +34,19 @@ def changeInfo(key_sheet_obj, data_obj, rowNo):
                     eval(executing_method)
                     msg = '<通过>%s'%executing_method
                     print(msg)
+                    logging.info(msg)
                     stepNo += 1
                 except Exception as e:
                     print(e)
                     msg = '<未通过>%s' % executing_method
                     msg += str(e)
                     print(msg)
+                    logging.debug(msg)
 
             if stepNo == key_stepRowNo - 1:
                 msg = '<成功>%s: 共有步骤：%d, 执行成功步骤：%d'%(data_obj.title, key_stepRowNo-1, stepNo)
                 print(msg)
+                logging.info(msg)
                 writeResult(data_obj, msg, idc+2, colNo=change_data_choiceNo+2, nowTime=excelObj.now,
                             timeNo=change_data_choiceNo+1, style='blue')
                 successful_member += 1
@@ -50,16 +54,19 @@ def changeInfo(key_sheet_obj, data_obj, rowNo):
             else:
                 msg = '<失败>%s: 共有步骤：%d, 执行成功步骤：%d' % (data_obj.title, key_stepRowNo - 1, stepNo)
                 print(msg)
+                logging.info(msg)
                 writeResult(data_obj, msg, idc + 2, colNo=change_data_choiceNo + 2, nowTime=excelObj.now,
                             timeNo=change_data_choiceNo + 1, style='red')
 
     if successful_member == target_member:
         msg = '<成功>%s, 共有条数：%d, 成功条数：%d'%(key_sheet_obj.title, target_member, successful_member)
         print(msg)
+        logging.info(msg)
         writeResult(case_sheetObj, msg, rowNo, case_resultNo, excelObj.now, case_timeNo, style='blue')
     else:
         msg = '<失败>%s, 共有条数：%d, 成功条数：%d' % (key_sheet_obj.title, target_member, successful_member)
         print(msg)
+        logging.info(msg)
         writeResult(case_sheetObj, msg, rowNo, case_resultNo, excelObj.now, case_timeNo, style='red')
 
 

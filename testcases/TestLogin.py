@@ -1,5 +1,6 @@
 from testcases.WriteTestResult import *
 from testcases.ChangeInfo import changeInfo
+from utilities.KeyAndDataLog import *
 
 def testLogin():
     executing_method = ''
@@ -38,6 +39,7 @@ def testLogin():
                         eval(executing_method)
                         msg = '<成功> %s'%executing_method
                         print(msg)
+                        logging.info(msg)
                         writeResult(key_sheetObj, msg, step, key_resultNo, excelObj.now, key_timeNo,
                                     picPath=' ', picNo=key_picNo, style='blue')
                         stepNo += 1
@@ -45,6 +47,7 @@ def testLogin():
                         msg = '<失败> %s' % executing_method
                         msg += str(e)
                         print(msg)
+                        logging.debug(msg)
                         pic_path = '错误截图地址'
                         writeResult(key_sheetObj, msg, step, key_resultNo, excelObj.now, key_timeNo,
                                     picPath=pic_path, picNo=key_picNo, style='red')
@@ -52,11 +55,13 @@ def testLogin():
                 if stepNo == key_rowNo - 1:
                     msg = '<成功>%s, 共有步骤: %d，执行成功步骤: %d'%(key_sheetObj.title, key_rowNo-1, stepNo)
                     print(msg)
+                    logging.info(msg)
                     writeResult(case_sheetObj, msg, idx+2, case_resultNo, excelObj.now, case_timeNo, style='blue')
 
                 else:
                     msg = '<失败>%s, 共有步骤: %d，执行成功步骤: %d' % (key_sheetObj.title, key_rowNo - 1, stepNo)
                     print(msg)
+                    logging.info(msg)
                     writeResult(case_sheetObj, msg, idx + 2, case_resultNo, excelObj.now,  case_timeNo, style='red')
 
             elif frame_type == '数据':
