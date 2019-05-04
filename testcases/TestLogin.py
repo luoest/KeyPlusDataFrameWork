@@ -1,27 +1,5 @@
-from utilities.getFilePath import excel_path
-from utilities.ExcelParsing import Exceling
-from performance.PagePerformance import *
-
-excelObj = Exceling()
-excelObj.getWorkbook(excel_path)
-
-case_sheetObj = excelObj.getSheet('用例')
-case_choiceNo = 6
-case_frameTypeNo = 2
-case_resultNo = 8
-case_timeNo = 7
-
-key_methodNo = 2
-key_resultNo = 7
-key_timeNo = 8
-key_picNo = 9
-
-def writeResult(sheet, content, rowNo, colNo, nowTime=None, timeNo=None, picPath=None, picNo=None, style=None):
-    excelObj.getWriteByRowAndCol(sheet, content, rowNo, colNo, style)
-    excelObj.getWriteTime(sheet, nowTime=nowTime, rowNo=rowNo, colNo=timeNo, style=style)
-    if picPath:
-        excelObj.getWriteByRowAndCol(sheet, content=picPath, rowNo=rowNo, colNo=picNo, style=style)
-
+from testcases.WriteTestResult import *
+from testcases.ChangeInfo import changeInfo
 
 def testLogin():
     executing_method = ''
@@ -81,6 +59,13 @@ def testLogin():
                     print(msg)
                     writeResult(case_sheetObj, msg, idx + 2, case_resultNo, excelObj.now,  case_timeNo, style='red')
 
+            elif frame_type == '数据':
+                data_key_sheetName = excelObj.getValueByRow(case_sheetObj, idx + 2)[case_frameTypeNo + 1].value
+                data_key_sheetObj = excelObj.getSheet(data_key_sheetName)
+                data_sheet_name = excelObj.getValueByRow(case_sheetObj, idx + 2)[case_frameTypeNo + 2].value
+                data_sheetObj = excelObj.getSheet(data_sheet_name)
+                changeInfo(data_key_sheetObj, data_sheetObj, rowNo=idx+2)
+
             # 清空不属于上述用例类型的结果及时间单元格
             else:
                 writeResult(case_sheetObj, content=' ', rowNo=idx+2, colNo=case_resultNo, nowTime=' ', timeNo=case_timeNo)
@@ -88,11 +73,6 @@ def testLogin():
         # 清空不需要执行的用例的结果及时间单元格
         else:
             writeResult(case_sheetObj, content=' ', rowNo=idx + 2, colNo=case_resultNo, nowTime=' ', timeNo=case_timeNo)
-
-
-    getOpenLocalFile(excel_path)
-    getClose()
-
 
 
 if __name__ == '__main__':
