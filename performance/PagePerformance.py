@@ -4,6 +4,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from utilities.ObjectMapping import getWaitElement
+from utilities.Keyboarding import Keyboarding
+from utilities.Clipboarding import Clipboarding
 import time
 import os
 
@@ -68,6 +70,19 @@ def getClose():
 
 def getOpenLocalFile(file):
     os.startfile(file)
+
+def getUploadLocalFile(locType, loc, file):
+    if browser_name == 'chrome':
+        Clipboarding.setText(file)
+        Clipboarding.getText()
+        getClick(locType, loc)
+        getSleep(2)
+        Keyboarding.twoKeys('ctrl', 'v')
+        getSleep(1)
+        Keyboarding.oneKey('enter')
+    else:
+        getSendKeys(locType, loc, file)
+
 
 
 if __name__ == '__main__':
