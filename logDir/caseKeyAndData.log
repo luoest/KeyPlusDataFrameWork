@@ -1,11 +1,20 @@
-<成功> getBrowser("firefox")
+<成功> getBrowser("chrome")
 <成功> getUrl("http://localhost")
 <成功> getSendKeys('name', 'username', 'gotIt')
 <成功> getSendKeys('name', 'password', 'gotIt123')
 <成功> getClick('name', 'Submit')
 <成功> getClick('partial link text', '请点击这里')
 <成功> getAssertIn("我的空间")
-<失败> getAssertIn("外星人的空间")页面代码中没有发现目标元素：外星人的空间
+<失败> getAssertIn("外星人的空间")页面代码中没有发现目标元素：外星人的空间Traceback (most recent call last):
+  File "D:\SELENIUM课件汇总=\课件总案例\我要自学网\KeyPlusDataFrameWork\testcases\TestLogin.py", line 40, in testLogin
+    eval(executing_method)
+  File "<string>", line 1, in <module>
+  File "D:\SELENIUM课件汇总=\课件总案例\我要自学网\KeyPlusDataFrameWork\performance\PagePerformance.py", line 51, in getAssertIn
+    raise e
+  File "D:\SELENIUM课件汇总=\课件总案例\我要自学网\KeyPlusDataFrameWork\performance\PagePerformance.py", line 48, in getAssertIn
+    assert element in getPageSource(), '页面代码中没有发现目标元素：%s'%str(element)
+AssertionError: 页面代码中没有发现目标元素：外星人的空间
+
 <成功> getSleep(1)
 <失败>登录, 共有步骤: 9，执行成功步骤: 8
 <通过>getClick("link text", "会员中心")
@@ -16,11 +25,11 @@
 <通过>getSendKeys("id", "mycall", "1366")
 <通过>getSendKeys("id", "phone", "66778")
 <通过>getSendKeys("id", "homepage", "www.ccom")
-<未通过>getUpLoadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")name 'getUpLoadLocalFile' is not defined
+<通过>getUploadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")
 <通过>getSendKeys("id", "address", "四川")
 <通过>getSendKeys("id", "zip", "10000")
 <通过>getSendKeys("id", "saytext", "大家好")
-<失败>个人信息: 共有步骤：12, 执行成功步骤：11
+<成功>个人信息: 共有步骤：12, 执行成功步骤：12
 <通过>getClick("link text", "会员中心")
 <通过>getClick("link text", "修改资料")
 <通过>getSendKeys("id", "truename", "小王")
@@ -29,11 +38,11 @@
 <通过>getSendKeys("id", "mycall", "1377")
 <通过>getSendKeys("id", "phone", "6655")
 <通过>getSendKeys("id", "homepage", "http")
-<未通过>getUpLoadLocalFile("name", "userpicfile", "D:\Desktop\gaming\ing.jpg")name 'getUpLoadLocalFile' is not defined
+<通过>getUploadLocalFile("name", "userpicfile", "D:\Desktop\gaming\ing.jpg")
 <通过>getSendKeys("id", "address", "重庆")
 <通过>getSendKeys("id", "zip", "22222")
 <通过>getSendKeys("id", "saytext", "不错")
-<失败>个人信息: 共有步骤：12, 执行成功步骤：11
+<成功>个人信息: 共有步骤：12, 执行成功步骤：12
 <通过>getClick("link text", "会员中心")
 <通过>getClick("link text", "修改资料")
 <通过>getSendKeys("id", "truename", "小张")
@@ -42,11 +51,11 @@
 <通过>getSendKeys("id", "mycall", "1388")
 <通过>getSendKeys("id", "phone", "5677")
 <通过>getSendKeys("id", "homepage", "httpcom")
-<未通过>getUpLoadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")name 'getUpLoadLocalFile' is not defined
+<通过>getUploadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")
 <通过>getSendKeys("id", "address", "河北")
 <通过>getSendKeys("id", "zip", "33333")
 <通过>getSendKeys("id", "saytext", "有点冷")
-<失败>个人信息: 共有步骤：12, 执行成功步骤：11
+<成功>个人信息: 共有步骤：12, 执行成功步骤：12
 <通过>getClick("link text", "会员中心")
 <通过>getClick("link text", "修改资料")
 <通过>getSendKeys("id", "truename", "Marry")
@@ -55,17 +64,17 @@
 <通过>getSendKeys("id", "mycall", "12335")
 <通过>getSendKeys("id", "phone", "5675467")
 <通过>getSendKeys("id", "homepage", "www.en")
-<未通过>getUpLoadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")name 'getUpLoadLocalFile' is not defined
+<通过>getUploadLocalFile("name", "userpicfile", "D:\Desktop\gaming\jiang.jpg")
 <通过>getSendKeys("id", "address", "英国")
 <通过>getSendKeys("id", "zip", "22")
 <通过>getSendKeys("id", "saytext", "hi")
-<失败>个人信息: 共有步骤：12, 执行成功步骤：11
-<失败>修改资料, 共有条数：4, 成功条数：0
+<成功>个人信息: 共有步骤：12, 执行成功步骤：12
+<成功>修改资料, 共有条数：4, 成功条数：4
 <成功> getBrowser("firefox")
 <成功> getUrl("https://www.baidu.com")
 <成功> getSendKeys('id', 'kw', '天气')
-<失败> getClick('partial link text', '全国')Message: 
-
+<成功> getClick('id', 'su')
+<成功> getClick('partial link text', '预报')
 <成功> getSleep(3)
 <成功> getClose()
-<失败>百度搜索, 共有步骤: 6，执行成功步骤: 5
+<成功>百度搜索, 共有步骤: 7，执行成功步骤: 7

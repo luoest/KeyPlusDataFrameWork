@@ -1,5 +1,6 @@
 from testcases.WriteTestResult import *
 from utilities.KeyAndDataLog import *
+import traceback
 
 def changeInfo(key_sheet_obj, data_obj, rowNo):
 
@@ -40,6 +41,8 @@ def changeInfo(key_sheet_obj, data_obj, rowNo):
                     print(e)
                     msg = '<未通过>%s' % executing_method
                     msg += str(e)
+                    errorInfo = traceback.format_exc()
+                    msg += str(errorInfo)
                     print(msg)
                     logging.debug(msg)
 

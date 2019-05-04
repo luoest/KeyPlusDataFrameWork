@@ -1,6 +1,7 @@
 from testcases.WriteTestResult import *
 from testcases.ChangeInfo import changeInfo
 from utilities.KeyAndDataLog import *
+import traceback
 
 def testLogin():
     executing_method = ''
@@ -46,6 +47,8 @@ def testLogin():
                     except Exception as e:
                         msg = '<失败> %s' % executing_method
                         msg += str(e)
+                        errorInfo = traceback.format_exc()
+                        msg += str(errorInfo)
                         print(msg)
                         logging.debug(msg)
                         pic_path = '错误截图地址'
